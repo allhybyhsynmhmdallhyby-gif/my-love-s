@@ -32,8 +32,8 @@
         left: 0;
         overflow: hidden;
         opacity: 0;
-        transform: scale(0.95) translateY(20px);
-        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scale(0.96) translateY(15px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
         pointer-events: none;
     }
 
@@ -96,7 +96,7 @@
 
     .btn-yellow:active { transform: scale(0.92); }
 
-    /* الصفحة الثانية (تكثير الخطوط المتموجة) */
+    /* الصفحة الثانية (الخطوط المتموجة) */
     #page2 {
         position: relative;
         background-color: #fffdf5;
@@ -138,19 +138,18 @@
         margin: 0 0 25px;
     }
 
-    /* الصفحة الجديدة (الصورة) */
+    /* الصفحة الجديدة (الصورة والقلوب البنية) */
     #pagePhoto {
-        background-color: #0d0d0d;
+        background-color: #000000;
         color: white;
         flex-direction: column;
         position: relative;
     }
 
-    /* زخارف القلوب البنية الثابتة */
     .brown-heart-pattern {
         position: absolute;
-        color: rgba(160, 100, 75, 0.28);
-        font-size: 26px;
+        color: rgba(180, 110, 70, 0.45);
+        font-size: 28px;
         user-select: none;
         pointer-events: none;
         z-index: 1;
@@ -158,13 +157,13 @@
 
     .photo-card {
         z-index: 2;
-        max-width: 360px;
+        max-width: 340px;
         width: 100%;
-        background: rgba(30, 20, 15, 0.75);
+        background: rgba(25, 18, 15, 0.85);
         padding: 16px;
         border-radius: 22px;
-        border: 2px solid rgba(160, 100, 75, 0.4);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+        border: 2px solid rgba(180, 110, 70, 0.5);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.8);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -172,16 +171,16 @@
 
     .photo-card img {
         width: 100%;
-        max-height: 380px;
+        max-height: 360px;
         object-fit: cover;
         border-radius: 16px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     }
 
     .photo-caption {
-        font-size: 22px;
+        font-size: 21px;
         margin: 18px 0;
-        color: #f3e5ab;
+        color: #f5e6c8;
         font-weight: bold;
     }
 
@@ -329,16 +328,16 @@
         #page1 h1 { font-size: 28px; }
         .message-box p { font-size: 17px; }
         #question { font-size: 23px; }
-        .photo-card { max-width: 310px; }
+        .photo-card { max-width: 300px; }
     }
 </style>
 </head>
 
 <body>
 
-<!-- الموسيقى الخلفية الهادئة -->
+<!-- صوت خلفي هادئ -->
 <audio id="bgMusic" loop preload="auto">
-    <source src="https://ia801503.us.archive.org/15/items/505-instrumental/_eLp8Tm0-do.mp3" type="audio/mpeg">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-1111.mp3" type="audio/mpeg">
 </audio>
 
 <!-- الصفحة الأولى -->
@@ -371,8 +370,7 @@
 <!-- الصفحة الجديدة (الصورة والقلوب البنية) -->
 <section id="pagePhoto" class="page">
     <div class="photo-card">
-        <!-- رابط الصورة المرفقة -->
-        <img src="https://i.ibb.co/L5k6jR1/us-photo.jpg" alt="Us" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600'">
+        <img src="https://i.postimg.co/28N702mY/1000010970.jpg" alt="Us" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600'">
         <div class="photo-caption">نحن؟ في يوم ما🫂🤎؟.</div>
         <button class="btn-brown" onclick="startQuestions()">استمري</button>
     </div>
@@ -397,12 +395,10 @@
 
     <div class="love-text">🩷❤I love you</div>
 
-    <!-- رابط الأغنية المباشر -->
     <a class="song-btn" href="https://youtu.be/q81KTygWjIU?si=p9lP2ZzNt3R4_lbZ" target="_blank" rel="noopener noreferrer">
         🎵 استمعي لأغنية Loverboy
     </a>
 
-    <!-- النص التوضيحي البارز -->
     <div class="clear-note">👈 اضغطي على الزر أعلاه للتحويل إلى الأغنية 🤍</div>
 </section>
 
@@ -412,7 +408,6 @@ let loveNoCount = 0;
 let yesScale = 1;
 let noScale = 1;
 
-// إنشاء القلوب المتحركة
 function createHearts(pageId) {
     const page = document.getElementById(pageId);
     const hearts = ['🤍', '💖', '💗', '❤️', '💕'];
@@ -428,15 +423,14 @@ function createHearts(pageId) {
     }
 }
 
-// إنشاء القلوب البنية الثابتة لصفحة الصورة
 function createBrownHearts() {
     const page = document.getElementById('pagePhoto');
     const positions = [
-        {top: '8%', left: '10%'}, {top: '15%', left: '82%'},
-        {top: '25%', left: '18%'}, {top: '38%', left: '88%'},
-        {top: '55%', left: '6%'},  {top: '68%', left: '80%'},
-        {top: '82%', left: '15%'}, {top: '88%', left: '72%'},
-        {top: '12%', left: '48%'}, {top: '92%', left: '42%'}
+        {top: '6%', left: '8%'},   {top: '12%', left: '82%'},
+        {top: '22%', left: '14%'},  {top: '32%', left: '86%'},
+        {top: '52%', left: '6%'},   {top: '64%', left: '82%'},
+        {top: '78%', left: '12%'},  {top: '86%', left: '76%'},
+        {top: '10%', left: '46%'},  {top: '90%', left: '44%'}
     ];
 
     positions.forEach(pos => {
@@ -449,15 +443,13 @@ function createBrownHearts() {
     });
 }
 
-// تشغيل الموسيقى بصوت متوسط هادئ عند الضغط على "ابدئي"
 function onStartClick() {
     const audio = document.getElementById('bgMusic');
-    audio.volume = 0.45; // صوت متوسط متوازن
-    audio.play().catch(e => console.log("Autoplay handled", e));
+    audio.volume = 0.4;
+    audio.play().catch(e => console.log("Audio play allowed", e));
     showPage('page2');
 }
 
-// إيقاف الموسيقى في الصفحة الأخيرة
 function stopMusic() {
     const audio = document.getElementById('bgMusic');
     audio.pause();
@@ -547,7 +539,9 @@ function answerNo() {
     } else if (currentStep === "loveIt") {
         setStep("giftChocolate");
     } else if (currentStep === "giftChocolate") {
-        setStep("getFlowers");
+        setStep("doYouLoveMe");
+    } else if (currentStep === "getFlowers") {
+        setStep("doYouLoveMe");
     } else if (currentStep === "doYouLoveMe") {
         loveNoCount++;
         const yesBtn = document.getElementById("yesBtn");
