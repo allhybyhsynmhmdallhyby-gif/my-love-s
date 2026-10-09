@@ -365,8 +365,8 @@
 <!-- الصفحة الجديدة (الصورة والقلوب البنية) -->
 <section id="pagePhoto" class="page">
     <div class="photo-card">
-        <!-- الصورة مضمنة داخلياً بنجاح لمحتوى الصورة الأصلية -->
-        <img src="https://files.catbox.moe/k3768z.jpg" alt="Us">
+        <!-- قراءة الصورة من المستودع مباشرة -->
+        <img src="us.jpg" alt="Us">
         <div class="photo-caption">نحن؟ في يوم ما🫂🤎؟.</div>
         <button class="btn-brown" onclick="startQuestions()">استمري</button>
     </div>
@@ -514,7 +514,7 @@ function answerNo() {
     if (currentStep === "cats") {
         setStep("chocolate");
     } else if (currentStep === "chocolate") {
-        setStep("loveIt");
+        setStep("giftChocolate");
     } else if (currentStep === "loveIt") {
         setStep("giftChocolate");
     } else if (currentStep === "giftChocolate") {
