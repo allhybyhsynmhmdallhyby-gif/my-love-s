@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إلى شخص مميز 🤍</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Tahoma, sans-serif;
+        overflow: hidden;
+        color: #333;
+    }
+
+    .page {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 25px;
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.6s ease;
+    }
+
+    .page.active {
+        display: flex;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.97); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* تأثير القلوب المتحركة */
+    .heart-particle {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        user-select: none;
+        pointer-events: none;
+        animation: floatUp 4s linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(100vh) scale(0.5) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-10vh) scale(1.2) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* الصفحة الأولى */
+    #page1 {
+        background: linear-gradient(135deg, #ff7ba0, #e91e63, #d81b60);
+        color: white;
+        flex-direction: column;
+    }
+
+    #page1 h1 {
+        font-size: 32px;
+        margin-bottom: 35px;
+        font-weight: bold;
+        z-index: 2;
+    }
+
+    .btn-yellow {
+        border: none;
+        background: #fff3a8;
+        color: #5d4037;
+        padding: 15px 45px;
+        border-radius: 30px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        transition: 0.25s;
+        z-index: 2;
+    }
+
+    .btn-yellow:active { transform: scale(0.92); }
+
+    /* الصفحة الثانية */
+    #page2 {
+        position: relative;
+        background-color: #fffdf5;
+        overflow: hidden;
+    }
+
+    #page2::before, #page2::after {
+        content: "";
+        position: absolute;
+        width: 140%;
+        height: 80px;
+        left: -20%;
+        border-top: 5px solid rgba(255, 220, 80, 0.55);
+        border-radius: 50%;
+        transform: rotate(-4deg);
+    }
+
+    #page2::before {
+        top: 8%;
+        box-shadow: 0 45px 0 rgba(255, 220, 80, 0.35), 0 90px 0 rgba(255, 220, 80, 0.25);
+    }
+
+    #page2::after {
+        bottom: 8%;
+        transform: rotate(4deg);
+        box-shadow: 0 45px 0 rgba(255, 220, 80, 0.35), 0 90px 0 rgba(255, 220, 80, 0.25);
+    }
+
+    .message-box {
+        position: relative;
+        z-index: 2;
+        max-width: 650px;
+        background: rgba(255,255,255,0.85);
+        padding: 30px 24px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .message-box p {
+        font-size: 19px;
+        line-height: 2;
+        margin: 0 0 25px;
+    }
+
+    /* صفحة الأسئلة */
+    #page3 {
+        background: linear-gradient(145deg, #fff2f6, #ffd5e3);
+        flex-direction: column;
+    }
+
+    .question-box {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255,255,255,0.92);
+        padding: 35px 20px;
+        border-radius: 30px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        z-index: 2;
+    }
+
+    #question {
+        font-size: 26px;
+        margin: 0 0 30px;
+        color: #d81b60;
+    }
+
+    .answers {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .answer-btn {
+        border: none;
+        background: #ff7fa8;
+        color: white;
+        padding: 14px 35px;
+        border-radius: 25px;
+        font-size: 19px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .answer-btn:active { transform: scale(0.92); }
+
+    /* الصفحة الأخيرة */
+    #page4 {
+        background: linear-gradient(135deg, #ff8dae, #e91e63);
+        color: white;
+        flex-direction: column;
+    }
+
+    .heart {
+        position: relative;
+        width: 140px;
+        height: 125px;
+        margin-bottom: 35px;
+        transform: rotate(-45deg);
+        background: #ff2a55;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heart::before, .heart::after {
+        content: "";
+        position: absolute;
+        width: 140px;
+        height: 125px;
+        background: #ff2a55;
+        border-radius: 50%;
+    }
+
+    .heart::before { top: -70px; left: 0; }
+    .heart::after { top: 0; left: 70px; }
+
+    .heart-text {
+        position: absolute;
+        z-index: 5;
+        transform: rotate(45deg);
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        line-height: 1.2;
+        width: 100%;
+    }
+
+    .love-text {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        z-index: 2;
+    }
+
+    .song-btn {
+        display: inline-block;
+        background: white;
+        color: #d81b60;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 19px;
+        font-weight: bold;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        transition: 0.25s;
+        z-index: 2;
+    }
+
+    .song-btn:active { transform: scale(0.92); }
+
+    .clear-note {
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 18px;
+        border-radius: 20px;
+        color: #ffffff;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 2;
+    }
+
+    @media (max-width: 500px) {
+        #page1 h1 { font-size: 28px; }
+        .message-box p { font-size: 17px; }
+        #question { font-size: 23px; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- الصفحة الأولى -->
+<section id="page1" class="page active">
+    <h1>الى شخص مميز🤍</h1>
+    <button class="btn-yellow" onclick="showPage('page2')">ابدئي</button>
+</section>
+
+<!-- الصفحة الثانية -->
+<section id="page2" class="page">
+    <div class="message-box">
+        <p>
+            منّي الى شخصي المميز، ماعرف شلون اوصفج بكد ما انتِ لطيفه. وخصوصاً من اسمع صوتج، اووفف شكد احبه، حرفياً كلشي بيج مميز ومايشبه شي ببقية البنات... صح كلامنا قليل بس العلاقة اعمق، والكلام الي بيني وبينج هم اعمق. اتمنى يجي يوم ونلتقي، ونطلع ونفتر سوا 🌼🤍🫂.
+            <br><br>
+            هسا لاياخذج الواهس وكملي.
+        </p>
+        <button class="btn-yellow" onclick="startQuestions()">استمري❤️‍🩹</button>
+    </div>
+</section>
+
+<!-- صفحة الأسئلة -->
+<section id="page3" class="page">
+    <div class="question-box">
+        <h2 id="question">تحبين البزازين؟</h2>
+        <div class="answers">
+            <button id="yesBtn" class="answer-btn" onclick="answerYes()">نعم</button>
+            <button id="noBtn" class="answer-btn" onclick="answerNo()">لا</button>
+        </div>
+    </div>
+</section>
+
+<!-- الصفحة الأخيرة -->
+<section id="page4" class="page">
+    <div class="heart">
+        <div class="heart-text">H<br>♥<br>S</div>
+    </div>
+
+    <div class="love-text">🩷❤I love you</div>
+
+    <!-- رابط الأغنية المباشر -->
+    <a class="song-btn" href="https://youtu.be/q81KTygWjIU?si=p9lP2ZzNt3R4_lbZ" target="_blank" rel="noopener noreferrer">
+        🎵 استمعي لأغنية Loverboy
+    </a>
+
+    <!-- النص التوضيحي البارز -->
+    <div class="clear-note">👈 اضغطي على الزر أعلاه للتحويل إلى الأغنية 🤍</div>
+</section>
+
+<script>
+let currentStep = "cats";
+let loveNoCount = 0;
+let yesScale = 1;
+let noScale = 1;
+
+// إنشاء القلوب المتحركة
+function createHearts(pageId) {
+    const page = document.getElementById(pageId);
+    const hearts = ['🤍', '💖', '💗', '❤️', '💕'];
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+        heart.style.animationDelay = (Math.random() * 3) + 's';
+        heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+        page.appendChild(heart);
+    }
+}
+
+// إضافة القلوب للصفحة الأولى والأخيرة تلقائياً
+window.onload = function() {
+    createHearts('page1');
+    createHearts('page4');
+};
+
+function showPage(pageId) {
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+}
+
+function startQuestions() {
+    showPage("page3");
+    setStep("cats");
+}
+
+function resetButtons() {
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    yesBtn.style.display = "inline-block";
+    noBtn.style.display = "inline-block";
+    yesBtn.innerText = "نعم";
+    noBtn.innerText = "لا";
+    yesScale = 1;
+    noScale = 1;
+    yesBtn.style.transform = `scale(${yesScale})`;
+    noBtn.style.transform = `scale(${noScale})`;
+}
+
+function setStep(step) {
+    currentStep = step;
+    const question = document.getElementById("question");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    resetButtons();
+
+    if (step === "cats") {
+        question.innerText = "تحبين البزازين؟";
+    } else if (step === "chocolate") {
+        question.innerText = "تحبين الشكليطه🍫؟";
+    } else if (step === "loveIt") {
+        question.innerText = "حبيها!😾";
+    } else if (step === "giftChocolate") {
+        question.innerText = "تريدين اجيبلج شكليطه؟🍫😋";
+    } else if (step === "getFlowers") {
+        question.innerText = "لعد راح اجيبلج ورد🙄";
+        yesBtn.innerText = "تمام";
+        noBtn.style.display = "none";
+    } else if (step === "doYouLoveMe") {
+        question.innerText = "تحبيني😽";
+        loveNoCount = 0;
+    }
+}
+
+function answerYes() {
+    if (currentStep === "cats") {
+        setStep("chocolate");
+    } else if (currentStep === "chocolate") {
+        setStep("giftChocolate");
+    } else if (currentStep === "loveIt") {
+        setStep("giftChocolate");
+    } else if (currentStep === "giftChocolate") {
+        setStep("doYouLoveMe");
+    } else if (currentStep === "getFlowers") {
+        setStep("doYouLoveMe");
+    } else if (currentStep === "doYouLoveMe") {
+        showPage("page4");
+    }
+}
+
+function answerNo() {
+    if (currentStep === "cats") {
+        setStep("chocolate");
+    } else if (currentStep === "chocolate") {
+        setStep("loveIt");
+    } else if (currentStep === "loveIt") {
+        setStep("giftChocolate");
+    } else if (currentStep === "giftChocolate") {
+        setStep("getFlowers");
+    } else if (currentStep === "doYouLoveMe") {
+        loveNoCount++;
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+
+        if (loveNoCount === 1) {
+            yesScale = 1.3;
+            noScale = 0.8;
+            yesBtn.style.transform = `scale(${yesScale})`;
+            noBtn.style.transform = `scale(${noScale})`;
+        } else if (loveNoCount === 2) {
+            yesScale = 1.6;
+            noScale = 0.5;
+            yesBtn.style.transform = `scale(${yesScale})`;
+            noBtn.style.transform = `scale(${noScale})`;
+        } else if (loveNoCount >= 3) {
+            noBtn.style.display = "none";
+            yesScale = 1.9;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        }
+    }
+}
+</script>
+
+</body>
+</html>
