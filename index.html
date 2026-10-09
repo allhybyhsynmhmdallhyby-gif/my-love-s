@@ -365,7 +365,6 @@
 <!-- الصفحة الجديدة (الصورة والقلوب البنية) -->
 <section id="pagePhoto" class="page">
     <div class="photo-card">
-        <!-- قراءة الصورة من المستودع مباشرة -->
         <img src="us.jpg" alt="Us">
         <div class="photo-caption">نحن؟ في يوم ما🫂🤎؟.</div>
         <button class="btn-brown" onclick="startQuestions()">استمري</button>
@@ -514,11 +513,11 @@ function answerNo() {
     if (currentStep === "cats") {
         setStep("chocolate");
     } else if (currentStep === "chocolate") {
-        setStep("giftChocolate");
+        setStep("loveIt");
     } else if (currentStep === "loveIt") {
         setStep("giftChocolate");
     } else if (currentStep === "giftChocolate") {
-        setStep("doYouLoveMe");
+        setStep("getFlowers");
     } else if (currentStep === "getFlowers") {
         setStep("doYouLoveMe");
     } else if (currentStep === "doYouLoveMe") {
