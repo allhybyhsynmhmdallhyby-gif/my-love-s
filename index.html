@@ -16,6 +16,7 @@
         font-family: Arial, Tahoma, sans-serif;
         overflow: hidden;
         color: #333;
+        background-color: #000;
     }
 
     .page {
@@ -26,21 +27,24 @@
         align-items: center;
         text-align: center;
         padding: 25px;
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 0;
         overflow: hidden;
-        animation: fadeIn 0.6s ease;
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
     }
 
     .page.active {
         display: flex;
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        pointer-events: auto;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.97); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    /* تأثير القلوب المتحركة */
+    /* تأثير القلوب المتحركة (للصفحة الأولى والأخيرة) */
     .heart-particle {
         position: absolute;
         color: rgba(255, 255, 255, 0.7);
@@ -92,40 +96,37 @@
 
     .btn-yellow:active { transform: scale(0.92); }
 
-    /* الصفحة الثانية */
+    /* الصفحة الثانية (تكثير الخطوط المتموجة) */
     #page2 {
         position: relative;
         background-color: #fffdf5;
         overflow: hidden;
     }
 
-    #page2::before, #page2::after {
-        content: "";
+    .wave-line {
         position: absolute;
-        width: 140%;
-        height: 80px;
-        left: -20%;
-        border-top: 5px solid rgba(255, 220, 80, 0.55);
+        width: 160%;
+        height: 70px;
+        left: -30%;
+        border-top: 4px solid rgba(255, 215, 60, 0.45);
         border-radius: 50%;
-        transform: rotate(-4deg);
+        pointer-events: none;
     }
 
-    #page2::before {
-        top: 8%;
-        box-shadow: 0 45px 0 rgba(255, 220, 80, 0.35), 0 90px 0 rgba(255, 220, 80, 0.25);
-    }
-
-    #page2::after {
-        bottom: 8%;
-        transform: rotate(4deg);
-        box-shadow: 0 45px 0 rgba(255, 220, 80, 0.35), 0 90px 0 rgba(255, 220, 80, 0.25);
-    }
+    .w1 { top: 4%; transform: rotate(-5deg); }
+    .w2 { top: 12%; transform: rotate(3deg); border-top-color: rgba(255, 200, 40, 0.35); }
+    .w3 { top: 20%; transform: rotate(-3deg); }
+    .w4 { top: 28%; transform: rotate(6deg); border-top-color: rgba(255, 220, 80, 0.25); }
+    .w5 { bottom: 28%; transform: rotate(-4deg); border-top-color: rgba(255, 220, 80, 0.25); }
+    .w6 { bottom: 20%; transform: rotate(5deg); }
+    .w7 { bottom: 12%; transform: rotate(-2deg); border-top-color: rgba(255, 200, 40, 0.35); }
+    .w8 { bottom: 4%; transform: rotate(4deg); }
 
     .message-box {
         position: relative;
         z-index: 2;
         max-width: 650px;
-        background: rgba(255,255,255,0.85);
+        background: rgba(255,255,255,0.92);
         padding: 30px 24px;
         border-radius: 25px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -133,9 +134,71 @@
 
     .message-box p {
         font-size: 19px;
-        line-height: 2;
+        line-height: 1.9;
         margin: 0 0 25px;
     }
+
+    /* الصفحة الجديدة (الصورة) */
+    #pagePhoto {
+        background-color: #0d0d0d;
+        color: white;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* زخارف القلوب البنية الثابتة */
+    .brown-heart-pattern {
+        position: absolute;
+        color: rgba(160, 100, 75, 0.28);
+        font-size: 26px;
+        user-select: none;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .photo-card {
+        z-index: 2;
+        max-width: 360px;
+        width: 100%;
+        background: rgba(30, 20, 15, 0.75);
+        padding: 16px;
+        border-radius: 22px;
+        border: 2px solid rgba(160, 100, 75, 0.4);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photo-card img {
+        width: 100%;
+        max-height: 380px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .photo-caption {
+        font-size: 22px;
+        margin: 18px 0;
+        color: #f3e5ab;
+        font-weight: bold;
+    }
+
+    .btn-brown {
+        border: none;
+        background: #8d5b4c;
+        color: #ffffff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        font-size: 19px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: 0.25s;
+    }
+
+    .btn-brown:active { transform: scale(0.92); }
 
     /* صفحة الأسئلة */
     #page3 {
@@ -266,27 +329,52 @@
         #page1 h1 { font-size: 28px; }
         .message-box p { font-size: 17px; }
         #question { font-size: 23px; }
+        .photo-card { max-width: 310px; }
     }
 </style>
 </head>
 
 <body>
 
+<!-- الموسيقى الخلفية الهادئة -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://ia801503.us.archive.org/15/items/505-instrumental/_eLp8Tm0-do.mp3" type="audio/mpeg">
+</audio>
+
 <!-- الصفحة الأولى -->
 <section id="page1" class="page active">
     <h1>الى شخص مميز🤍</h1>
-    <button class="btn-yellow" onclick="showPage('page2')">ابدئي</button>
+    <button class="btn-yellow" onclick="onStartClick()">ابدئي</button>
 </section>
 
-<!-- الصفحة الثانية -->
+<!-- الصفحة الثانية (الرسالة) -->
 <section id="page2" class="page">
+    <div class="wave-line w1"></div>
+    <div class="wave-line w2"></div>
+    <div class="wave-line w3"></div>
+    <div class="wave-line w4"></div>
+    <div class="wave-line w5"></div>
+    <div class="wave-line w6"></div>
+    <div class="wave-line w7"></div>
+    <div class="wave-line w8"></div>
+
     <div class="message-box">
         <p>
             منّي الى شخصي المميز، ماعرف شلون اوصفج بكد ما انتِ لطيفه. وخصوصاً من اسمع صوتج، اووفف شكد احبه، حرفياً كلشي بيج مميز ومايشبه شي ببقية البنات... صح كلامنا قليل بس العلاقة اعمق، والكلام الي بيني وبينج هم اعمق. اتمنى يجي يوم ونلتقي، ونطلع ونفتر سوا 🌼🤍🫂.
             <br><br>
             هسا لاياخذج الواهس وكملي.
         </p>
-        <button class="btn-yellow" onclick="startQuestions()">استمري❤️‍🩹</button>
+        <button class="btn-yellow" onclick="showPage('pagePhoto')">استمري❤️‍🩹</button>
+    </div>
+</section>
+
+<!-- الصفحة الجديدة (الصورة والقلوب البنية) -->
+<section id="pagePhoto" class="page">
+    <div class="photo-card">
+        <!-- رابط الصورة المرفقة -->
+        <img src="https://i.ibb.co/L5k6jR1/us-photo.jpg" alt="Us" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600'">
+        <div class="photo-caption">نحن؟ في يوم ما🫂🤎؟.</div>
+        <button class="btn-brown" onclick="startQuestions()">استمري</button>
     </div>
 </section>
 
@@ -340,15 +428,55 @@ function createHearts(pageId) {
     }
 }
 
-// إضافة القلوب للصفحة الأولى والأخيرة تلقائياً
+// إنشاء القلوب البنية الثابتة لصفحة الصورة
+function createBrownHearts() {
+    const page = document.getElementById('pagePhoto');
+    const positions = [
+        {top: '8%', left: '10%'}, {top: '15%', left: '82%'},
+        {top: '25%', left: '18%'}, {top: '38%', left: '88%'},
+        {top: '55%', left: '6%'},  {top: '68%', left: '80%'},
+        {top: '82%', left: '15%'}, {top: '88%', left: '72%'},
+        {top: '12%', left: '48%'}, {top: '92%', left: '42%'}
+    ];
+
+    positions.forEach(pos => {
+        const h = document.createElement('div');
+        h.className = 'brown-heart-pattern';
+        h.innerText = '🤎';
+        h.style.top = pos.top;
+        h.style.left = pos.left;
+        page.appendChild(h);
+    });
+}
+
+// تشغيل الموسيقى بصوت متوسط هادئ عند الضغط على "ابدئي"
+function onStartClick() {
+    const audio = document.getElementById('bgMusic');
+    audio.volume = 0.45; // صوت متوسط متوازن
+    audio.play().catch(e => console.log("Autoplay handled", e));
+    showPage('page2');
+}
+
+// إيقاف الموسيقى في الصفحة الأخيرة
+function stopMusic() {
+    const audio = document.getElementById('bgMusic');
+    audio.pause();
+    audio.currentTime = 0;
+}
+
 window.onload = function() {
     createHearts('page1');
     createHearts('page4');
+    createBrownHearts();
 };
 
 function showPage(pageId) {
     document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
+
+    if (pageId === 'page4') {
+        stopMusic();
+    }
 }
 
 function startQuestions() {
